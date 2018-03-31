@@ -1,0 +1,122 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.micha.calculator2.page.pages.ConfigPage">
+
+
+    <TextView
+        android:id="@+id/dec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Decimal places: 8"
+        android:textSize="24sp" />
+
+    <SeekBar
+        android:id="@+id/decimalPlaces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/dec"
+        android:max="16"
+        android:progress="8" />
+
+    <TextView
+        android:id="@+id/xMinText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/decimalPlaces"
+        android:layout_marginTop="15dp"
+        android:text="xMin="
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/xMin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/xMinText"
+        android:layout_alignBottom="@+id/xMinText"
+        android:layout_toEndOf="@+id/xMinText"
+        android:layout_toRightOf="@+id/xMinText"
+        android:ems="10"
+        android:inputType="number|numberSigned|numberDecimal"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/xMaxText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/xMinText"
+        android:layout_marginTop="15dp"
+        android:text="xMax="
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/xMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/xMaxText"
+        android:layout_alignBottom="@+id/xMaxText"
+        android:layout_toEndOf="@+id/xMaxText"
+        android:layout_toRightOf="@+id/xMaxText"
+        android:ems="10"
+        android:inputType="number|numberSigned|numberDecimal"
+        android:text="10" />
+
+    <TextView
+        android:id="@+id/yMinText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/xMaxText"
+        android:layout_marginTop="15dp"
+        android:text="yMin="
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/yMin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/yMinText"
+        android:layout_alignBottom="@+id/yMinText"
+        android:layout_toEndOf="@+id/yMinText"
+        android:layout_toRightOf="@+id/yMinText"
+        android:ems="10"
+        android:inputType="number|numberSigned|numberDecimal"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/yMaxText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/yMinText"
+        android:layout_marginTop="15dp"
+        android:text="yMax="
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/yMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/yMaxText"
+        android:layout_alignBottom="@+id/yMaxText"
+        android:layout_toEndOf="@+id/yMaxText"
+        android:layout_toRightOf="@+id/yMaxText"
+        android:ems="10"
+        android:inputType="number|numberSigned|numberDecimal"
+        android:text="10" />
+
+</RelativeLayout>

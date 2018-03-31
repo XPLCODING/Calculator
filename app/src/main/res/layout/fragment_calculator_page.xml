@@ -1,0 +1,410 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="382.8dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="me.micha.calculator2.page.pages.CalculatorPage"
+    tools:layout_editor_absoluteY="0dp">
+
+        <ScrollView
+            android:id="@+id/history"
+            android:layout_width="match_parent"
+            android:layout_height="151dp"
+            android:clipToPadding="false"
+            android:fillViewport="true">
+
+                <LinearLayout
+                    android:id="@+id/historyContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#cecece"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/enterfield"
+            android:layout_width="360dp"
+            android:layout_height="34dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/cameraScan"
+            android:layout_toLeftOf="@+id/cameraScan"
+            android:layout_toStartOf="@+id/cameraScan"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/dot"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/three"
+            android:layout_toEndOf="@+id/zero"
+            android:layout_toRightOf="@+id/zero"
+            android:background="@android:color/holo_blue_dark"
+            android:text="•"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/negative_minus"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/dot"
+            android:layout_toRightOf="@+id/dot"
+            android:background="@android:color/holo_blue_dark"
+            android:text="(-)" />
+
+        <Button
+            android:id="@+id/enter"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@+id/negative_minus"
+            android:layout_toRightOf="@+id/negative_minus"
+            android:background="@android:color/holo_green_light"
+            android:text="Enter" />
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/enter"
+            android:layout_alignRight="@+id/enter"
+            android:layout_below="@+id/subtract"
+            android:layout_toEndOf="@+id/negative_minus"
+            android:layout_toRightOf="@+id/negative_minus"
+            android:background="@color/colorPrimaryDark"
+            android:text="+"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/subtract"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/add"
+            android:layout_alignRight="@+id/add"
+            android:layout_below="@+id/multiplicate"
+            android:layout_toEndOf="@+id/six"
+            android:layout_toRightOf="@+id/six"
+            android:background="@color/colorPrimaryDark"
+            android:text="-"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/multiplicate"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/divide"
+            android:layout_toEndOf="@+id/rightparanthese"
+            android:layout_toRightOf="@+id/rightparanthese"
+            android:background="@color/colorPrimaryDark"
+            android:text="*"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/divide"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/nine"
+            android:layout_alignLeft="@+id/clear"
+            android:layout_alignStart="@+id/clear"
+            android:background="@color/colorPrimaryDark"
+            android:text="/"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/power"
+            android:layout_width="96.5dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/divide"
+            android:layout_alignEnd="@+id/multiplicate"
+            android:layout_alignRight="@+id/multiplicate"
+            android:background="@android:color/holo_blue_dark"
+            android:text="^" />
+
+        <Button
+            android:id="@+id/log"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/sinus"
+            android:background="@android:color/holo_blue_dark"
+            android:text="log" />
+
+        <Button
+            android:id="@+id/ln"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/stat"
+            android:layout_alignBottom="@+id/stat"
+            android:layout_toEndOf="@+id/sinus"
+            android:layout_toRightOf="@+id/sinus"
+            android:background="@android:color/holo_blue_dark"
+            android:text="ln" />
+
+        <Button
+            android:id="@+id/stat"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/power"
+            android:layout_toEndOf="@+id/cosinus"
+            android:layout_toRightOf="@+id/cosinus"
+            android:background="@android:color/holo_blue_dark"
+            android:text="STAT" />
+
+        <Button
+            android:id="@+id/e"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/stat"
+            android:layout_alignStart="@+id/stat"
+            android:layout_alignTop="@+id/pi"
+            android:background="@android:color/holo_blue_dark"
+            android:text="e"
+            android:textAllCaps="false"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/vars"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/second"
+            android:layout_alignBottom="@+id/second"
+            android:layout_toLeftOf="@+id/stat"
+            android:layout_toStartOf="@+id/stat"
+            android:background="@android:color/holo_blue_dark"
+            android:text="vars" />
+
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/stat"
+            android:layout_alignBottom="@+id/stat"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/holo_blue_dark"
+            android:text="CLEAR" />
+
+        <Button
+            android:id="@+id/pi"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/stat"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/holo_blue_dark"
+            android:text="π"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/second"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/log"
+            android:background="@android:color/holo_orange_dark"
+            android:text="2nd" />
+
+        <Button
+            android:id="@+id/tangens"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/power"
+            android:layout_alignBottom="@+id/power"
+            android:layout_toEndOf="@+id/cosinus"
+            android:layout_toRightOf="@+id/cosinus"
+            android:background="@color/colorAccent"
+            android:text="tan" />
+
+        <Button
+            android:id="@+id/sinus"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/cosinus"
+            android:layout_alignBottom="@+id/cosinus"
+            android:background="@color/colorAccent"
+            android:text="sin" />
+
+        <Button
+            android:id="@+id/cosinus"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tangens"
+            android:layout_alignBottom="@+id/tangens"
+            android:layout_toEndOf="@+id/sinus"
+            android:layout_toRightOf="@+id/sinus"
+            android:background="@color/colorAccent"
+            android:text="cos" />
+
+        <Button
+            android:id="@+id/rightparanthese"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/power"
+            android:layout_toEndOf="@+id/cosinus"
+            android:layout_toRightOf="@+id/cosinus"
+            android:background="@android:color/holo_blue_dark"
+            android:text=")" />
+
+        <Button
+            android:id="@+id/leftpranthese"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/rightparanthese"
+            android:layout_alignBottom="@+id/rightparanthese"
+            android:layout_toEndOf="@+id/sinus"
+            android:layout_toRightOf="@+id/sinus"
+            android:background="@android:color/holo_blue_dark"
+            android:text="(" />
+
+        <Button
+            android:id="@+id/sqrt"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/leftpranthese"
+            android:layout_alignBottom="@+id/leftpranthese"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/holo_blue_dark"
+            android:text="x²" />
+
+        <Button
+            android:id="@+id/three"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/six"
+            android:layout_toEndOf="@+id/dot"
+            android:layout_toRightOf="@+id/dot"
+            android:background="@color/colorPrimary"
+            android:text="3"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/four"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/one"
+            android:layout_alignLeft="@+id/one"
+            android:layout_alignStart="@+id/one"
+            android:background="@color/colorPrimary"
+            android:text="4"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/five"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/four"
+            android:layout_toEndOf="@+id/one"
+            android:layout_toRightOf="@+id/one"
+            android:background="@color/colorPrimary"
+            android:text="5"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/six"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/five"
+            android:layout_alignBottom="@+id/five"
+            android:layout_toEndOf="@+id/two"
+            android:layout_toRightOf="@+id/two"
+            android:background="@color/colorPrimary"
+            android:text="6"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/seven"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/eight"
+            android:layout_alignBottom="@+id/eight"
+            android:layout_alignLeft="@+id/four"
+            android:layout_alignStart="@+id/four"
+            android:background="@color/colorPrimary"
+            android:text="7"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/eight"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/six"
+            android:layout_toEndOf="@+id/seven"
+            android:layout_toRightOf="@+id/seven"
+            android:background="@color/colorPrimary"
+            android:text="8"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/nine"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/eight"
+            android:layout_alignBottom="@+id/eight"
+            android:layout_toEndOf="@+id/eight"
+            android:layout_toRightOf="@+id/eight"
+            android:background="@color/colorPrimary"
+            android:text="9"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/two"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/one"
+            android:layout_alignBottom="@+id/one"
+            android:layout_toEndOf="@+id/one"
+            android:layout_toRightOf="@+id/one"
+            android:background="@color/colorPrimary"
+            android:text="2"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/one"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/zero"
+            android:background="@color/colorPrimary"
+            android:text="1"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/zero"
+            android:layout_width="95.677dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            android:text="0"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/cameraScan"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_above="@+id/pi"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/camera_icon" />
+
+
+</RelativeLayout>
