@@ -3,6 +3,7 @@ package me.micha.calculator2.calculation.calc;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.micha.calculator2.calculation.Calculator;
 import me.micha.calculator2.calculation.expression.Expression;
 import me.micha.calculator2.calculation.expression.ExpressionManager;
 import me.micha.calculator2.calculation.expression.MathExpression;
@@ -30,7 +31,6 @@ public class CalculationParser {
     	output = new Stack(splitExpressions());
     }
     
-    
     private List<Expression> splitExpressions() {
         List<Expression> expressions = new ArrayList<>();
 
@@ -40,8 +40,19 @@ public class CalculationParser {
             for(MathExpression expression : ExpressionManager.getMathExpressions()) {
                 String sub = inputClone.substring(0, expression.getSymbolLength() >= inputClone.length() ? inputClone.length() : expression.getSymbolLength());
                 if(sub.equals(expression.getSymbol())) {
-                    expressions.add(expression);
-                    inputClone = inputClone.substring(expression.getSymbolLength());
+                    if(expression.indexes() != null && expression.indexes().length == 2) {
+                        if(!expressions.isEmpty()) {
+                            expressions.add(expression);
+                            inputClone = inputClone.substring(expression.getSymbolLength());
+                        }else {
+                            expressions.add(new NumberExpression(Calculator.getHistory().lastEntry(2).getEntryAsDouble()));
+                            expressions.add(expression);
+                            inputClone = inputClone.substring(expression.getSymbolLength());
+                        }
+                    }else {
+                        expressions.add(expression);
+                        inputClone = inputClone.substring(expression.getSymbolLength());
+                    }
                 }
             }
             

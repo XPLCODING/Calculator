@@ -1,6 +1,5 @@
 package me.micha.calculator2.page.swipe;
 
-import android.content.pm.ActivityInfo;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.micha.calculator2.MainActivity;
 import me.micha.calculator2.page.Page;
 import me.micha.calculator2.page.pages.CalculatorPage;
 import me.micha.calculator2.page.pages.ConfigPage;
@@ -56,6 +54,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     }
 
     public Page getPage(int position) {
+        System.out.println(pages);
         return pages.get(position);
     }
 

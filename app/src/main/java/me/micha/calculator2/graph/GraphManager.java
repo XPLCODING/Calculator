@@ -8,6 +8,7 @@ import java.util.List;
 
 import me.micha.calculator2.MainActivity;
 import me.micha.calculator2.R;
+import me.micha.calculator2.file.DataStore;
 
 /**
  * Created by micha on 25.03.2018.
@@ -15,18 +16,13 @@ import me.micha.calculator2.R;
 
 public class GraphManager {
 
+    @DataStore(keyName = "graphWindow", priority = 4)
     private static GraphWindow graphWindow;
     public static boolean CHANGED = true;
     private static List<Graph> graphs = new ArrayList<>();
 
     public static void load() {
         graphWindow = new GraphWindow(0, 10, 0, 10);
-
-        //Graph g = new Graph(Arrays.asList(1d, 2d, 3d, 4d ,5d, 6d, 7d), Arrays.asList(2.6d, 5.5d, 4d, 9d, 2d, 10d, 7.5d));
-        Graph g = new Graph(new Equation("y=2^x"));
-
-        graphs.add(g);
-
         GraphView graphView = getGraphView();
 
         graphView.removeAllSeries();
@@ -39,6 +35,14 @@ public class GraphManager {
         setWindow();
 
         CHANGED = false;
+    }
+
+    public static void addGraph(Graph graph) {
+        if(graph.getId() == -1) throw new IllegalArgumentException("Graph has no Id");
+        graphs.add(graph);
+        graph.calculateLineData();
+        getGraphView().addSeries(graph.getLineGraphSeries());
+
     }
 
     private static void setWindow() {

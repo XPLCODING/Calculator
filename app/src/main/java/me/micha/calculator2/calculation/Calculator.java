@@ -1,7 +1,6 @@
 package me.micha.calculator2.calculation;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.SparseArray;
 
 import com.google.android.gms.vision.Frame;

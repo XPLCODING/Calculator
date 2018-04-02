@@ -1,7 +1,6 @@
 package me.micha.calculator2.button;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import me.micha.calculator2.MainActivity;
@@ -13,9 +12,8 @@ import me.micha.calculator2.R;
 
 public class ButtonClickListener implements View.OnClickListener {
 
-    public static boolean SECOND = false;
-
     private String enter, second;
+
     public ButtonClickListener(String enter, String second) {
         this.enter = enter;
         this.second = second;
@@ -24,6 +22,6 @@ public class ButtonClickListener implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         TextView enterField = (TextView) MainActivity.getInstance().findViewById(R.id.enterfield);
-        enterField.setText(enterField.getText() + (SECOND ? second: enter));
+        enterField.setText(enterField.getText() + ((second != null && !second.isEmpty()) ? (ButtonManager.second() ? second : enter) : enter));
     }
 }

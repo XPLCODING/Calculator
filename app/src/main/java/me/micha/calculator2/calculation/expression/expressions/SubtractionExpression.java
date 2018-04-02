@@ -10,7 +10,7 @@ import me.micha.calculator2.calculation.expression.MathExpression;
 public class SubtractionExpression extends MathExpression {
 
     public SubtractionExpression() {
-        super("-", false, 1);
+        super("−", false, 1);
     }
 
     @Override

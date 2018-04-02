@@ -36,7 +36,7 @@ public abstract class MathExpression extends Expression {
 	}
     
     public boolean isBasicOperation() {
-    	return symbol == "+" || symbol == "-" || symbol == "*" || symbol == "/";
+    	return symbol == "+" || symbol == "−" || symbol == "*" || symbol == "/";
     }
     
     public boolean hasPriority() {

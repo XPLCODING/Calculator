@@ -62,6 +62,16 @@ public class Page extends Fragment {
 
     public void onSelected() {}
 
+    public void onResumePage() {
+        System.out.print("RESUME");
+        if(getActivity() != null) getActivity().setRequestedOrientation(isRotatable() ? ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if(getActivity() != null) System.out.println(getActivity().getRequestedOrientation());
+    }
+
+    public void onPausePage() {
+        if(getActivity() != null) getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

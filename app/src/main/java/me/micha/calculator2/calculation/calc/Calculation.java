@@ -52,7 +52,14 @@ public class Calculation {
 				if(expression.isParanthesed()) {
 					stack.add(i, expression.calc(((NumberExpression)stack.get(i + 1))));
 					stack.remove(i + 1, i + 2);
-				}
+				}else if(expression.indexes() == null) {
+					stack.add(i, expression.calc(null));
+					stack.remove(i + 1, i + 1);
+				}else if(expression.indexes().length == 1) {
+				    NumberExpression[] input = stack.getByIndexes(expression.indexes(), i);
+                    stack.remove(i - 1, i);
+				    stack.add(i - 1, expression.calc(input));
+                }
 			}
 		}
 		

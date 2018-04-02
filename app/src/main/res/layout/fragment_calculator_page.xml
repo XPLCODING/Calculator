@@ -1,8 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
-    android:layout_width="382.8dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="me.micha.calculator2.page.pages.CalculatorPage"
@@ -34,6 +33,7 @@
             android:layout_alignTop="@+id/cameraScan"
             android:layout_toLeftOf="@+id/cameraScan"
             android:layout_toStartOf="@+id/cameraScan"
+            android:textColor="@android:color/black"
             android:textSize="18sp" />
 
         <Button
@@ -112,22 +112,22 @@
 
         <Button
             android:id="@+id/divide"
-            android:layout_width="96dp"
+            android:layout_width="98dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/nine"
-            android:layout_alignLeft="@+id/clear"
-            android:layout_alignStart="@+id/clear"
+            android:layout_alignLeft="@+id/multiplicate"
+            android:layout_alignStart="@+id/multiplicate"
             android:background="@color/colorPrimaryDark"
             android:text="/"
             android:textSize="18sp" />
 
         <Button
             android:id="@+id/power"
-            android:layout_width="96.5dp"
+            android:layout_width="98dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/divide"
-            android:layout_alignEnd="@+id/multiplicate"
-            android:layout_alignRight="@+id/multiplicate"
+            android:layout_alignEnd="@+id/divide"
+            android:layout_alignRight="@+id/divide"
             android:background="@android:color/holo_blue_dark"
             android:text="^" />
 
@@ -185,10 +185,9 @@
 
         <Button
             android:id="@+id/clear"
-            android:layout_width="97dp"
+            android:layout_width="98dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/stat"
-            android:layout_alignBottom="@+id/stat"
+            android:layout_above="@+id/power"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:background="@android:color/holo_blue_dark"
@@ -196,7 +195,7 @@
 
         <Button
             android:id="@+id/pi"
-            android:layout_width="97dp"
+            android:layout_width="98dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/stat"
             android:layout_alignParentEnd="true"

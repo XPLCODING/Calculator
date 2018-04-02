@@ -18,6 +18,7 @@ public class Graph {
     private BaseSeries<DataPoint> graphSeries;
     private GraphType graphType;
     private Equation equation;
+    private int id = -1;
 
     public Graph(Equation equation) {
         graphType = GraphType.LINE;
@@ -43,12 +44,24 @@ public class Graph {
        }
     }
 
+    public Equation getEquation() {
+        return equation;
+    }
+
     public void setColor(int color) {
         graphSeries.setColor(color);
     }
 
     public void setData(DataPoint[] data) {
         graphSeries = new LineGraphSeries<>(data);
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public GraphType getGraphType() {

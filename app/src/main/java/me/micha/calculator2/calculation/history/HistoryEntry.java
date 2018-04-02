@@ -18,12 +18,15 @@ public class HistoryEntry {
         return entry;
     }
 
+    public double getEntryAsDouble() {
+        return Double.parseDouble(entry);
+    }
+
     public Type getType() {
         return type;
     }
 
     public enum Type {
         RESULT, EXERCISE;
-
     }
 }

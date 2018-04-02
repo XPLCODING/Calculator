@@ -6,10 +6,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
+import me.micha.calculator2.button.ButtonClickListener;
+import me.micha.calculator2.button.ButtonManager;
 import me.micha.calculator2.calculation.expression.ExpressionManager;
 import me.micha.calculator2.file.FileManager;
 import me.micha.calculator2.page.pages.CalculatorPage;
+import me.micha.calculator2.page.swipe.PageChangeListener;
 import me.micha.calculator2.page.swipe.PagerAdapter;
 
 public class MainActivity extends AppCompatActivity implements CalculatorPage.OnFragmentInteractionListener {
@@ -21,21 +25,22 @@ public class MainActivity extends AppCompatActivity implements CalculatorPage.On
         super.onCreate(savedInstanceState);
         instance = this;
         setContentView(R.layout.activity_main);
-        //FileManager.load();
+        FileManager.load(savedInstanceState);
         ExpressionManager.load();
 
         loadPages();
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
+    public void onFragmentInteraction(Uri uri) {}
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-        FileManager.save();
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        FileManager.save(outState);
+        outState.putBoolean("BUTTON_SECOND", ButtonManager.second());
+        outState.putString("ENTERFIELD",(String) ((TextView)findViewById(R.id.enterfield)).getText());
+
     }
 
     private void loadPages() {
@@ -53,10 +58,9 @@ public class MainActivity extends AppCompatActivity implements CalculatorPage.On
         tabLayout.getTabAt(1).setIcon(R.drawable.calculator_icon);
         tabLayout.getTabAt(2).setIcon(R.drawable.graph_icon);
 
-        tabLayout.setScrollPosition(0,0f,true);
-        viewPager.setCurrentItem(0);
-
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setScrollPosition(1,0f,true);
+        viewPager.setCurrentItem(1);
+        viewPager.setOnPageChangeListener(new PageChangeListener(tabLayout, pagerAdapter));
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
