@@ -119,4 +119,40 @@
         android:inputType="number|numberSigned|numberDecimal"
         android:text="10" />
 
+    <TextView
+        android:id="@+id/yMaxText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:text="Angle"
+        android:textSize="24sp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/yMax"
+        android:layout_alignStart="@+id/yMax"
+        android:layout_alignTop="@+id/yMaxText2">
+
+        <RadioButton
+            android:id="@+id/degree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Degree"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Radian"
+            android:textSize="18sp" />
+    </RadioGroup>
+
 </RelativeLayout>

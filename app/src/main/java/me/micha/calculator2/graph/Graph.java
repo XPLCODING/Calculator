@@ -18,18 +18,24 @@ public class Graph {
     private BaseSeries<DataPoint> graphSeries;
     private GraphType graphType;
     private Equation equation;
-    private int id = -1;
+    private int id = -1, color, xList, yList;
+    private boolean active = false, changed = true;
 
-    public Graph(Equation equation) {
+    public Graph(int id, boolean active, int color, Equation equation) {
         graphType = GraphType.LINE;
+        this.id = id;
+        this.active = active;
+        this.color = color;
         this.equation = equation;
     }
 
-    public Graph(List<Double> listX, List<Double> listY) {
-        if(listX.size() == listY.size() && listX.size() > 0) {
-            graphType = GraphType.POINTS;
-            graphSeries = new PointsGraphSeries<>(toData(listX, listY));
-        }
+    public Graph(int id, boolean active, int color, int xList, int yList) {
+        graphType = GraphType.POINTS;
+        this.id = id;
+        this.active = active;
+        this.color = color;
+        this.xList = xList;
+        this.yList = yList;
     }
 
     public void calculateLineData() {
@@ -50,6 +56,7 @@ public class Graph {
 
     public void setColor(int color) {
         graphSeries.setColor(color);
+        this.color = color;
     }
 
     public void setData(DataPoint[] data) {
@@ -60,8 +67,28 @@ public class Graph {
         this.id = id;
     }
 
+    public int getColor() {
+        return color;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public boolean hasChanged() {
+        return changed;
+    }
+
+    public int getXList() {
+        return xList;
+    }
+
+    public int getYList() {
+        return yList;
     }
 
     public GraphType getGraphType() {

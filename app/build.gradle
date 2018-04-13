@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "me.micha.calculator2"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -28,5 +28,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support:design:27.1.0'
     compile 'com.jjoe64:graphview:4.2.1'
-    compile 'com.google.android.gms:play-services-vision:12.0.0'
+    compile 'com.rmtheis:tess-two:8.0.0'
 }

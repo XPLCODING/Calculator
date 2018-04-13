@@ -14,9 +14,9 @@ import me.micha.calculator2.MainActivity;
 import me.micha.calculator2.calculation.Calculator;
 import me.micha.calculator2.calculation.history.History;
 import me.micha.calculator2.calculation.history.HistoryEntry;
+import me.micha.calculator2.graph.Equation;
 import me.micha.calculator2.graph.Graph;
 import me.micha.calculator2.graph.GraphManager;
-import me.micha.calculator2.graph.GraphType;
 import me.micha.calculator2.graph.GraphWindow;
 
 /**
@@ -38,7 +38,7 @@ public class FileManager {
         History history = new History();
         List<HistoryEntry> list = new ArrayList<>();
         for(int i = 0; i < 19; i++) {
-            String s = state != null ? state.getString("HISTORY_ENTRY_" + i) : get("history.entry." + i);
+            String s = state != null ? state.getString("HISTORY_ENTRY_" + i) : getString("history.entry." + i);
             if(s == null) return;
             String[] split = s.split("//");
             if(split.length != 2) return;
@@ -47,11 +47,19 @@ public class FileManager {
         history.setHistory(list);
         dataSore.put("history", history);
         //GRAPHWINDOW
-        double xMin = state != null ? Double.parseDouble(state.getString("GRAPHWINDOW_MIN_X")) : Double.parseDouble(get("graphWinodw.xMin"));
-        double xMax = state != null ? Double.parseDouble(state.getString("GRAPHWINDOW_MAX_X")) : Double.parseDouble(get("graphWinodw.xMax"));
-        double yMin = state != null ? Double.parseDouble(state.getString("GRAPHWINDOW_MIN_Y")) : Double.parseDouble(get("graphWinodw.yMin"));
-        double yMax = state != null ? Double.parseDouble(state.getString("GRAPHWINDOW_MAX_Y")) : Double.parseDouble(get("graphWinodw.yMax"));
+        double xMin = state != null ? Double.parseDouble(state.getString("GRAPHWINDOW_MIN_X")) : Double.parseDouble(getString("graphWinodw.xMin"));
+        double xMax = state != null ? Double.parseDouble(state.getString("GRAPHWINDOW_MAX_X")) : Double.parseDouble(getString("graphWinodw.xMax"));
+        double yMin = state != null ? Double.parseDouble(state.getString("GRAPHWINDOW_MIN_Y")) : Double.parseDouble(getString("graphWinodw.yMin"));
+        double yMax = state != null ? Double.parseDouble(state.getString("GRAPHWINDOW_MAX_Y")) : Double.parseDouble(getString("graphWinodw.yMax"));
         dataSore.put("graphWindow", new GraphWindow(xMin, xMax, yMin, yMax));
+        //GRAPHS
+        Map<Integer, Graph> yplots = new HashMap<>(), yeq = new HashMap<>();
+        for(int i = 0; i < 9; i++) {
+            yplots.put(i, getGraph(i, state));
+            yeq.put(i, getYGraph(i, state));
+        }
+        dataSore.put("yPlots", yplots);
+        dataSore.put("yEquations", yeq);
     }
 
     private static void loadDataStoreFields() {
@@ -98,18 +106,82 @@ public class FileManager {
         }
 
         //GRAPHS
-        for(Graph graph : GraphManager.getGraphs()) {
-            if(graph.getGraphType() == GraphType.LINE) {
-                if(state != null) {
-                    state.putString("GRAPH_Y" + graph.getId(), graph.getEquation().getEquation());
-                }else {
-                    put("graph.y." + graph.getId(), graph.getEquation().getEquation());
-                }
-            }else if(graph.getGraphType() == GraphType.POINTS) {
-
-            }
+        for(Map.Entry<Integer, Graph> entry : GraphManager.getYPlots().entrySet()) {
+            putGraph(entry.getValue(), state);
         }
 
+        for(Map.Entry<Integer, Graph> entry : GraphManager.getYEquations().entrySet()) {
+            putYGraph(entry.getValue(), state);
+        }
+    }
+
+    private static void putGraph(Graph graph, Bundle state) {
+        if(state != null) {
+            String path = "GRAPH_" + graph.getId();
+            state.putInt(path + "_COLOR", graph.getColor());
+            state.putBoolean(path + "_ACTIVE", graph.isActive());
+            state.putInt(path + "_XLIST", graph.getXList());
+            state.putInt(path + "_YLIST", graph.getYList());
+        }else {
+            String path = "graph." + graph.getId();
+            put(path + ".color", graph.getColor());
+            put(path + ".active", graph.isActive());
+            put(path + ".xlist", graph.getXList());
+            put(path + ".ylist", graph.getYList());
+        }
+    }
+
+    private static Graph getGraph(int index, Bundle state) {
+        if(state != null) {
+            String path = "GRAPH_" + index;
+            int color = state.getInt(path + "_COLOR");
+            boolean active = state.getBoolean(path + "_ACTIVE");
+            int xlist = state.getInt(path + "_XLIST");
+            int ylist = state.getInt(path + "_YLIST");
+
+            return new Graph(index, active, color, xlist, ylist);
+        }else {
+            String path = "graph." + index;
+            int color = getInt(path + ".color");
+            boolean active = getBoolean(path + ".active");
+            int xlist = getInt(path + ".xlist");
+            int ylist = getInt(path + ".ylist");
+
+            return new Graph(index, active, color, xlist, ylist);
+        }
+    }
+
+    private static void putYGraph(Graph graph, Bundle state) {
+        if(state != null) {
+            String path = "GRAPH_Y_" + graph.getId();
+            state.putInt(path + "_COLOR", graph.getColor());
+            state.putBoolean(path + "_ACTIVE", graph.isActive());
+            state.putString(path + "_EQUATION", graph.getEquation().getCalcString());
+        }else {
+            String path = "graph.y." + graph.getId();
+            put(path + ".color", graph.getColor());
+            put(path + ".active", graph.isActive());
+            put(path + ".xlist", graph.getXList());
+            put(path + ".ylist", graph.getYList());
+        }
+    }
+
+    private static Graph getYGraph(int index, Bundle state) {
+        if(state != null) {
+            String path = "GRAPH_Y_" + index;
+            int color = state.getInt(path + "_COLOR");
+            boolean active = state.getBoolean(path + "_ACTIVE");
+            String eq = getString(path + "_EQUATION");
+
+            return new Graph(index, active, color, new Equation(eq));
+        }else {
+            String path = "graph.y." + index;
+            int color = state.getInt(path + ".color");
+            boolean active = state.getBoolean(path + ".active");
+            String eq = getString(path + ".equation");
+
+            return new Graph(index, active, color, new Equation(eq));
+        }
     }
 
     private static void put(String key, Object o) {
@@ -130,11 +202,22 @@ public class FileManager {
         editor.apply();
     }
 
-    private static String get(String key) {
+    private static String getString(String key) {
         SharedPreferences prefs = MainActivity.getInstance().getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
-
         return prefs.getString(key, "");
     }
+
+    private static int getInt(String key) {
+        SharedPreferences prefs = MainActivity.getInstance().getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
+        return prefs.getInt(key, -1);
+    }
+
+    private static boolean getBoolean(String key) {
+        SharedPreferences prefs = MainActivity.getInstance().getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
+        return prefs.getBoolean(key, false);
+    }
+
+
 
     public static List<DataField> getAnnotatedFields() {
         List<DataField> dataFields = new ArrayList<>();
@@ -155,6 +238,7 @@ public class FileManager {
     }
 
     public static List<Class> getClasses() {
+        
         return new ArrayList<>();
     }
 

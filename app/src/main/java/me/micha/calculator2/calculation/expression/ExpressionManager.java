@@ -10,6 +10,7 @@ import me.micha.calculator2.calculation.expression.expressions.CosinusExpression
 import me.micha.calculator2.calculation.expression.expressions.DivisionExpression;
 import me.micha.calculator2.calculation.expression.expressions.EulerExpression;
 import me.micha.calculator2.calculation.expression.expressions.FacultyExpression;
+import me.micha.calculator2.calculation.expression.expressions.KommaExpression;
 import me.micha.calculator2.calculation.expression.expressions.LeftParantheseExpression;
 import me.micha.calculator2.calculation.expression.expressions.LogarithmExpression;
 import me.micha.calculator2.calculation.expression.expressions.MultiplicationExpression;
@@ -23,6 +24,7 @@ import me.micha.calculator2.calculation.expression.expressions.SquaredExpression
 import me.micha.calculator2.calculation.expression.expressions.SubtractionExpression;
 import me.micha.calculator2.calculation.expression.expressions.SummationExpression;
 import me.micha.calculator2.calculation.expression.expressions.TangensExpression;
+import me.micha.calculator2.calculation.expression.methods.BinomialCoefficientMethod;
 
 
 /**
@@ -50,6 +52,8 @@ public class ExpressionManager {
     	new NaturalLogarithmExpression();
     	new SubtractionExpression();
     	new SummationExpression();
+    	new BinomialCoefficientMethod();
+    	new KommaExpression();
     	new MultiplicationExpression();
     	new DivisionExpression();
     	new LeftParantheseExpression();

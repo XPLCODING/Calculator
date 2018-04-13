@@ -21,7 +21,7 @@ public class ButtonClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        TextView enterField = (TextView) MainActivity.getInstance().findViewById(R.id.enterfield);
+        TextView enterField = ButtonManager.getEnterfield();
         enterField.setText(enterField.getText() + ((second != null && !second.isEmpty()) ? (ButtonManager.second() ? second : enter) : enter));
     }
 }

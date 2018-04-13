@@ -40,7 +40,7 @@ public class CalculationParser {
             for(MathExpression expression : ExpressionManager.getMathExpressions()) {
                 String sub = inputClone.substring(0, expression.getSymbolLength() >= inputClone.length() ? inputClone.length() : expression.getSymbolLength());
                 if(sub.equals(expression.getSymbol())) {
-                    if(expression.indexes() != null && expression.indexes().length == 2) {
+                    if(expression.indexes() != null && expression.indexes().length == 2 && !expression.isParanthesed()) {
                         if(!expressions.isEmpty()) {
                             expressions.add(expression);
                             inputClone = inputClone.substring(expression.getSymbolLength());

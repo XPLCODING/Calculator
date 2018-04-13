@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <CheckBox
+        android:id="@+id/active"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:text="xList:" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="yList:" />
+
+    <NumberPicker
+        android:id="@+id/xList"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="65dp"/>
+
+    <NumberPicker
+        android:id="@+id/yList"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="20dp"/>
+
+    <ImageView
+        android:id="@+id/colorPick"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@android:color/black"
+        android:layout_marginLeft="90dp"/>
+
+</merge>

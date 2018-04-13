@@ -8,6 +8,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.micha.calculator2.ListPickerActivity;
 import me.micha.calculator2.MainActivity;
 import me.micha.calculator2.R;
 import me.micha.calculator2.calculation.Calculator;
@@ -16,6 +17,7 @@ public class ButtonManager {
 
     private static List<Button> buttons = new ArrayList<>();
     private static boolean SECOND = false;
+    private static TextView enterfield;
 
     public static void load() {
         add(new Button(R.id.second, new View.OnClickListener() {
@@ -48,19 +50,26 @@ public class ButtonManager {
         add(new Button(R.id.multiplicate, "*", "!", "x!"));
         add(new Button(R.id.subtract, "−", "", ""));
         add(new Button(R.id.add, "+", "", ""));
-        add(new Button(R.id.power, "^", "", ""));
+        add(new Button(R.id.power, "^", "bin_c(", "bin_c"));
         add(new Button(R.id.leftpranthese, "(", "", ""));
         add(new Button(R.id.rightparanthese, ")", "", ""));
         add(new Button(R.id.sinus, "sin(", "asin(", "asin"));
         add(new Button(R.id.cosinus, "cos(", "acos(", "acos"));
         add(new Button(R.id.tangens, "tan(", "atan(", "atan"));
-        add(new Button(R.id.dot, ".", "", ""));
+        add(new Button(R.id.dot, ".", ",", ","));
         add(new Button(R.id.log, "log(", "", ""));
         add(new Button(R.id.ln, "ln(", "", ""));
         add(new Button(R.id.pi, "π", "", ""));
         add(new Button(R.id.e, "e", "", ""));
         add(new Button(R.id.negative_minus, "-", "", ""));
         add(new Button(R.id.sqrt, "²", "√(", "√"));
+        add(new Button(R.id.stat, new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                MainActivity.getInstance().startActivityForResult(new Intent(MainActivity.getInstance(), ListPickerActivity.class), 21);
+            }
+        }));
 
         add(new Button(R.id.clear, new View.OnClickListener() {
             @Override
@@ -80,6 +89,16 @@ public class ButtonManager {
             }
         }));
 
+        setEnterField((TextView)MainActivity.getInstance().findViewById(R.id.enterfield));
+
+    }
+
+    public static void setEnterField(TextView enterField) {
+        enterfield = enterField;
+    }
+
+    public static TextView getEnterfield() {
+        return enterfield;
     }
 
     public static void add(Button button) {

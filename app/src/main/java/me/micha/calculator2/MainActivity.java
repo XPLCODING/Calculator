@@ -1,17 +1,20 @@
 package me.micha.calculator2;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import me.micha.calculator2.button.ButtonClickListener;
 import me.micha.calculator2.button.ButtonManager;
 import me.micha.calculator2.calculation.expression.ExpressionManager;
 import me.micha.calculator2.file.FileManager;
+import me.micha.calculator2.global.Vars;
+import me.micha.calculator2.graph.GraphManager;
+import me.micha.calculator2.ocr.OCRManager;
 import me.micha.calculator2.page.pages.CalculatorPage;
 import me.micha.calculator2.page.swipe.PageChangeListener;
 import me.micha.calculator2.page.swipe.PagerAdapter;
@@ -25,7 +28,13 @@ public class MainActivity extends AppCompatActivity implements CalculatorPage.On
         super.onCreate(savedInstanceState);
         instance = this;
         setContentView(R.layout.activity_main);
+
         FileManager.load(savedInstanceState);
+
+        Vars.load();
+
+        OCRManager.copyFile();
+
         ExpressionManager.load();
 
         loadPages();
@@ -44,13 +53,13 @@ public class MainActivity extends AppCompatActivity implements CalculatorPage.On
     }
 
     private void loadPages() {
-        TabLayout tabLayout = (TabLayout)findViewById(R.id.tablayout);
+        TabLayout tabLayout = findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab());
         tabLayout.addTab(tabLayout.newTab());
         tabLayout.addTab(tabLayout.newTab());
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        final ViewPager viewPager = findViewById(R.id.viewPager);
         final PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
 
@@ -82,6 +91,22 @@ public class MainActivity extends AppCompatActivity implements CalculatorPage.On
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == 21) {
+            if(data != null) {
+
+            }
+        }else {
+            if(data != null) {
+                OCRManager ocr = new OCRManager();
+                String scanned = ocr.recognize((Bitmap) data.getExtras().get("data"));
+                ((TextView)findViewById(R.id.enterfield)).setText(scanned);
+            }
+        }
     }
 
     public static MainActivity getInstance() {

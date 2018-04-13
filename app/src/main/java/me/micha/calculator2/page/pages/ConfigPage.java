@@ -1,9 +1,11 @@
 package me.micha.calculator2.page.pages;
 
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import me.micha.calculator2.R;
+import me.micha.calculator2.page.Config;
 import me.micha.calculator2.page.Page;
 
 /**
@@ -32,6 +34,13 @@ public class ConfigPage extends Page {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+            }
+        });
+
+        ((RadioGroup)findViewById(R.id.radioGroup)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                Config.DEGREE = checkedId == R.id.degree ? true : false;
             }
         });
     }

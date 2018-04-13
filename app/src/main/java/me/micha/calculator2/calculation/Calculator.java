@@ -1,13 +1,5 @@
 package me.micha.calculator2.calculation;
 
-import android.graphics.Bitmap;
-import android.util.SparseArray;
-
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
-
-import me.micha.calculator2.MainActivity;
 import me.micha.calculator2.calculation.calc.Calculation;
 import me.micha.calculator2.calculation.calc.CalculationParser;
 import me.micha.calculator2.calculation.history.History;
@@ -49,26 +41,6 @@ public class Calculator {
 
     public static History getHistory() {
         return history;
-    }
-
-    public static String getStringFromImage(Bitmap bitmap) {
-        TextRecognizer textRecognizer = new TextRecognizer.Builder(MainActivity.getInstance().getApplicationContext()).build();
-
-        if(textRecognizer.isOperational()) {
-            Frame frame = new Frame.Builder().setBitmap(bitmap).build();
-
-            SparseArray<TextBlock> items = textRecognizer.detect(frame);
-            StringBuilder sb = new StringBuilder();
-
-            for(int i = 0; i < items.size(); i++) {
-                TextBlock item = items.valueAt(i);
-                sb.append(item.getValue());
-            }
-
-            return sb.toString().trim();
-        }
-
-        return null;
     }
 }
 

@@ -4,11 +4,14 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.Viewport;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import me.micha.calculator2.MainActivity;
+import me.micha.calculator2.GraphActivity;
 import me.micha.calculator2.R;
 import me.micha.calculator2.file.DataStore;
+import me.micha.calculator2.global.Vars;
 
 /**
  * Created by micha on 25.03.2018.
@@ -19,30 +22,25 @@ public class GraphManager {
     @DataStore(keyName = "graphWindow", priority = 4)
     private static GraphWindow graphWindow;
     public static boolean CHANGED = true;
-    private static List<Graph> graphs = new ArrayList<>();
+    @DataStore(keyName = "yPlots", priority = 4)
+    private static Map<Integer, Graph> y_plots = new HashMap<>();
+    @DataStore(keyName = "yEquations", priority = 4)
+    private static Map<Integer, Graph> y_eq = new HashMap<>();
 
-    public static void load() {
+    public static void reload() {
         graphWindow = new GraphWindow(0, 10, 0, 10);
         GraphView graphView = getGraphView();
 
-        graphView.removeAllSeries();
-
-        for(Graph graph : getGraphs()) {
-            graph.calculateLineData();
-            graphView.addSeries(graph.getLineGraphSeries());
+        for(Map.Entry<Integer, Graph> entry : y_plots.entrySet()) {
+            if(entry.getValue().isActive() && entry.getValue().hasChanged()) {
+                entry.getValue().calculateLineData();
+                graphView.addSeries(entry.getValue().getLineGraphSeries());
+            }
         }
 
         setWindow();
 
         CHANGED = false;
-    }
-
-    public static void addGraph(Graph graph) {
-        if(graph.getId() == -1) throw new IllegalArgumentException("Graph has no Id");
-        graphs.add(graph);
-        graph.calculateLineData();
-        getGraphView().addSeries(graph.getLineGraphSeries());
-
     }
 
     private static void setWindow() {
@@ -56,14 +54,26 @@ public class GraphManager {
     }
 
     public static GraphView getGraphView() {
-        return ((GraphView)MainActivity.getInstance().findViewById(R.id.graphView));
+        return GraphActivity.INSTANCE.findViewById(R.id.graphView);
+    }
+
+    public static Graph getYPlot(int index) {
+        return y_plots.get(index);
+    }
+
+    public static Graph getYEquation(int index) {
+        return y_eq.get(index);
     }
 
     public static GraphWindow getGraphWindow() {
         return graphWindow;
     }
 
-    public static List<Graph> getGraphs() {
-        return graphs;
+    public static Map<Integer, Graph> getYPlots() {
+        return y_plots;
+    }
+
+    public static Map<Integer, Graph> getYEquations() {
+        return y_eq;
     }
 }

@@ -1,6 +1,7 @@
 package me.micha.calculator2.calculation.expression.expressions;
 
 import me.micha.calculator2.calculation.expression.MathExpression;
+import me.micha.calculator2.page.Config;
 
 /**
  * Created by micha on 27.03.2018.
@@ -14,7 +15,7 @@ public class SinusExpression extends MathExpression {
 
     @Override
     public NumberExpression calc(NumberExpression... input) {
-        return new NumberExpression(Math.sin(Math.toRadians(input[0].getValue())));
+        return new NumberExpression(Math.sin(Config.DEGREE ? Math.toRadians(input[0].getValue()) : input[0].getValue()));
     }
 
     @Override
